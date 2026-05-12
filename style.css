@@ -1,0 +1,15 @@
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #f6f8fa; color: #24292f; line-height: 1.5; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+header { text-align: center; padding: 40px 0; background: #ce3021; color: white; margin-bottom: 30px; }
+
+.card { background: white; border: 1px solid #d0d7de; border-radius: 6px; padding: 24px; margin-bottom: 20px; }
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+
+.btn { display: inline-block; padding: 6px 12px; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 6px; border: 1px solid rgba(27, 31, 36, 0.15); background-color: #f6f8fa; color: #24292f; margin-right: 8px; }
+.btn:hover { background-color: #f3f4f6; }
+.btn.danger { color: #cf222e; }
+.btn.secondary { color: #0969da; }
+
+.tag { font-size: 12px; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-right: 5px; }
+.popular { background: #fff8c5; color: #8a6a00; }
+.active { background: #dafbe1; color: #1a7f37; }
