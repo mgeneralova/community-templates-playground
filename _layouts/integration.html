@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/integration.css' | relative_url }}">
+    
+    <!-- SEO -->
+    {% seo %}
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-brand">
+                    <a href="{{ '/' | relative_url }}" class="logo">
+                        <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L15.09 8.26H22L17.55 12.5L19.64 18.74L12 14.3L4.36 18.74L6.45 12.5L2 8.26H8.91L12 2Z"/>
+                        </svg>
+                        {{ site.title }}
+                    </a>
+                </div>
+                <ul class="navbar-menu">
+                    <li><a href="{{ '/' | relative_url }}">← Back to All Templates</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="integration-container">
+                <!-- Header Section -->
+                <div class="integration-header">
+                    <div class="integration-title-section">
+                        <h1>{{ page.title }}</h1>
+                        <div class="integration-metadata">
+                            <div class="status-badge status-{{ page.status }}">
+                                {{ page.status | capitalize }}
+                            </div>
+                            {% if page.last_updated %}
+                            <span class="last-updated">Updated: {{ page.last_updated }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="integration-actions">
+                        <a href="https://github.com/{{ site.repository }}/tree/main/{{ page.folder_path }}" class="btn btn-primary" target="_blank">
+                            View in Repository
+                        </a>
+                        <a href="https://github.com/{{ site.repository }}/issues/new?title=Maintain:%20{{ page.title }}&body=I%20would%20like%20to%20maintain%20this%20template.&labels=maintainer-application" class="btn btn-secondary" target="_blank">
+                            Apply to Maintain
+                        </a>
+                        <a href="https://github.com/{{ site.repository }}/issues/new?title=Issue:%20{{ page.title }}&body=Please%20describe%20the%20issue.&labels=broken-report" class="btn btn-danger" target="_blank">
+                            Report Broken
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="integration-content-grid">
+                    <!-- Main Content Column -->
+                    <div class="integration-main">
+                        <div class="integration-body">
+                            {{ content }}
+                        </div>
+
+                        <!-- Activity Status -->
+                        <div class="activity-section">
+                            <h3>Activity Status</h3>
+                            <img src="https://img.shields.io/github/last-commit/{{ site.repository }}?label=Last%20Commit&style=flat-square" alt="Last Commit Badge">
+                        </div>
+
+                        <!-- Community Feedback -->
+                        <div class="feedback-section">
+                            <h3>Community Feedback & Ratings</h3>
+                            <!-- Giscus Comments -->
+                            <div class="giscus-container" 
+                                 data-repo="{{ site.repository }}"
+                                 data-repo-id="R_kgDOLtN4Xg"
+                                 data-category="Announcements"
+                                 data-category-id="DIC_kwDOLtN4Xs4CXWAH"
+                                 data-mapping="pathname"
+                                 data-strict="0"
+                                 data-reactions-enabled="1"
+                                 data-emit-metadata="0"
+                                 data-input-position="bottom"
+                                 data-theme="light"
+                                 data-lang="en"
+                                 crossorigin="anonymous"
+                                 async>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="integration-sidebar">
+                        <!-- Metadata Card -->
+                        <div class="sidebar-card">
+                            <h4>Information</h4>
+                            <ul class="metadata-list">
+                                <li>
+                                    <strong>Status:</strong>
+                                    <span class="status-badge status-{{ page.status }}">{{ page.status | capitalize }}</span>
+                                </li>
+                                <li>
+                                    <strong>Folder:</strong>
+                                    <code>{{ page.folder_path }}</code>
+                                </li>
+                                {% if page.author %}
+                                <li>
+                                    <strong>Author:</strong>
+                                    <a href="https://github.com/{{ page.author }}" target="_blank">@{{ page.author }}</a>
+                                </li>
+                                {% endif %}
+                                {% if page.maintainer %}
+                                <li>
+                                    <strong>Maintainer:</strong>
+                                    <a href="https://github.com/{{ page.maintainer }}" target="_blank">@{{ page.maintainer }}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                        <!-- Tags Card -->
+                        {% if page.tags %}
+                        <div class="sidebar-card">
+                            <h4>Tags</h4>
+                            <div class="tags-list">
+                                {% for tag in page.tags %}
+                                <a href="{{ '/' | relative_url }}?tag={{ tag }}" class="tag">{{ tag }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Categories Card -->
+                        {% if page.categories %}
+                        <div class="sidebar-card">
+                            <h4>Categories</h4>
+                            <ul>
+                                {% for category in page.categories %}
+                                <li><a href="{{ '/' | relative_url }}?category={{ category }}">{{ category }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        <!-- Related Templates Card -->
+                        <div class="sidebar-card">
+                            <h4>Resources</h4>
+                            <ul>
+                                <li><a href="https://github.com/{{ site.repository }}/issues">Report an issue</a></li>
+                                <li><a href="https://github.com/{{ site.repository }}">View repository</a></li>
+                                <li><a href="https://zabbix.com">Zabbix Official</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h4>{{ site.title }}</h4>
+                    <p>{{ site.description }}</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/{{ site.repository }}">GitHub Repository</a></li>
+                        <li><a href="https://github.com/{{ site.repository }}/issues">Report Issues</a></li>
+                        <li><a href="https://github.com/{{ site.repository }}/discussions">Discussions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://zabbix.com">Zabbix Official</a></li>
+                        <li><a href="https://www.zabbix.com/documentation">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Zabbix Community. Licensed under MIT.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Giscus Script -->
+    <script src="https://giscus.app/client.js" data-repo="{{ site.repository }}" data-repo-id="R_kgDOLtN4Xg" data-category="Announcements" data-category-id="DIC_kwDOLtN4Xs4CXWAH" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async></script>
+
+    <!-- Main Scripts -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

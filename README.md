@@ -1,27 +1,96 @@
-# Zabbix public templates
+# Zabbix Community Templates
 
-## A place for community driven integrations with Zabbix
+<div align="center">
 
-This repository is dedicated to templates that are created and maintained by Zabbix community.
+[![Build and Deploy](https://github.com/mgeneralova/community-templates-playground/workflows/Build%20and%20Deploy%20Jekyll%20Site/badge.svg)](https://github.com/mgeneralova/community-templates-playground/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## How to use templates from this repository?
-- Download and [import a template](https://www.zabbix.com/documentation/current/manual/xml_export_import/templates#importing) into the supported Zabbix version.
-- Configure the template according to the configuration requirements
-- Configure a host with [template](https://www.zabbix.com/documentation/current/manual/config/templates/template)
+A comprehensive, community-maintained repository of Zabbix monitoring templates with a modern, grid-based documentation portal.
 
-## How to Collaborate?
-- Fix and report bugs
-- Improve template documentation
-- Review and discuss templates and feature proposals
-- Answer questions and discuss in GitHub issues
+[🌐 Visit the Portal](https://mgeneralova.github.io/community-templates-playground/) | [📚 Browse Templates](#templates) | [🤝 Contribute](./CONTRIBUTING.md)
 
-## How to contribute a new template
-- Read [template guidelines](https://www.zabbix.com/documentation/guidelines/en/thosts/community_templates)
-- Review template structure
-- Open a pull request with a template for the correct version
-- Be ready to discuss your pull request
+</div>
 
-## Templates
+---
+
+## 🎯 About
+
+This repository hosts a curated collection of **community-driven Zabbix monitoring templates** for:
+- ☁️ Cloud platforms (AWS, Azure, GCP)
+- 🌐 Web servers and load balancers
+- 💾 Databases and data systems
+- 🔧 Infrastructure and DevOps tools
+- 📊 Monitoring and observability platforms
+- And much more!
+
+Each template is maintained by dedicated community members and includes comprehensive documentation, installation guides, and troubleshooting tips.
+
+## 🚀 Quick Start
+
+### For Users
+
+1. **Browse templates** at [the portal](https://mgeneralova.github.io/community-templates-playground/)
+2. **View details** including status, metrics, and configuration
+3. **Access the repository folder** for template files
+4. **Import into Zabbix** following the instructions
+5. **Configure** according to your environment
+
+### For Contributors
+
+1. **Fork** the repository
+2. **Create a new template** in `_integrations/` using Markdown
+3. **Include** front matter with metadata (status, tags, author)
+4. **Document** thoroughly with examples
+5. **Test** locally with `bundle exec jekyll serve`
+6. **Submit** a pull request
+
+## 📖 Documentation
+
+- [About the Project](./about.md) - Mission and values
+- [How to Contribute](./contribute.md) - Contribution guidelines
+- [Contributing Guide](./CONTRIBUTING.md) - Detailed technical guide
+- [Template Structure](./CONTRIBUTING.md#template-standards) - How to create templates
+
+## 🛠️ Technology Stack
+
+- **Platform**: GitHub Pages + Jekyll 4.3
+- **Styling**: Responsive CSS Grid with Zabbix brand colors
+- **Colors**: #D40000 (Red), #0A466A (Dark Blue), #0275B8 (Light Blue), #FFFFFF (White)
+- **Fonts**: Gotham Pro, Roboto
+- **Comments**: Giscus (GitHub Discussions integration)
+- **CI/CD**: GitHub Actions
+
+## 📁 Repository Structure
+
+```
+.
+├── _integrations/          # Template markdown files
+├── _layouts/              # Jekyll layout templates
+├── _includes/             # Reusable HTML components
+├── assets/
+│   ├── css/              # Stylesheets (Zabbix theme)
+│   └── js/               # Interactive features
+├── .github/
+│   ├── workflows/        # GitHub Actions CI/CD
+│   └── ISSUE_TEMPLATE/   # Issue templates
+├── index.md              # Homepage
+├── about.md              # About page
+├── contribute.md         # Contribution guide
+├── CONTRIBUTING.md       # Technical guide
+├── _config.yml           # Jekyll configuration
+└── Gemfile              # Ruby dependencies
+```
+
+## 🎨 Template Statuses
+
+| Status | Icon | Meaning |
+|--------|------|---------|
+| **Active** | ✅ | Actively maintained, tested, supported |
+| **Stale** | ⚠️ | Not recently updated, needs attention |
+| **Unmaintained** | 🔴 | No longer maintained, use at own risk |
+| **Experimental** | 🧪 | New, limited testing, feedback welcome |
+
+## 📚 Templates
 * [Applications](Applications)
     * [1C](Applications/1C)
         * [1C Enterprise](Applications/1C/template_1c_enterprise)

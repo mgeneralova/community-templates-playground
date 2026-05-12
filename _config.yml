@@ -1,0 +1,45 @@
+# Jekyll Configuration
+title: "Zabbix Community Templates"
+description: "A comprehensive directory of community-maintained Zabbix monitoring templates"
+baseurl: ""
+url: "https://mgeneralova.github.io/community-templates-playground"
+
+# Theme and plugins
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  integrations:
+    output: true
+    permalink: /integrations/:name/
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+exclude:
+  - .git
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+
+# Front Matter defaults
+defaults:
+  - scope:
+      path: "_integrations"
+      type: "integrations"
+    values:
+      layout: "integration"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# Repository info for GitHub integration
+repository: mgeneralova/community-templates-playground
+branch: main
