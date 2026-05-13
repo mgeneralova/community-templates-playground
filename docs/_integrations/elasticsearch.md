@@ -7,6 +7,9 @@ categories: ["Databases"]
 status: "stale"
 author: "community"
 last_updated: "2024-02-15"
+community_score: 63
+discussion_count: 4
+open_issues: 5
 description: "Monitor Elasticsearch cluster health, indexing performance, and search metrics with real-time dashboards."
 ---
 

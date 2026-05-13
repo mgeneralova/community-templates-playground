@@ -8,6 +8,9 @@ status: "active"
 author: "mgeneralova"
 maintainer: "mgeneralova"
 last_updated: "2024-05-12"
+community_score: 82
+discussion_count: 6
+open_issues: 2
 description: "Monitor AWS CloudWatch metrics via Docker Wrapper with real-time dashboards and alerting."
 ---
 

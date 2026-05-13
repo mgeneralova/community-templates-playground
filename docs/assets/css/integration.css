@@ -36,6 +36,44 @@
     flex-wrap: wrap;
 }
 
+.community-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    align-items: center;
+}
+
+.health-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.health-good {
+    background-color: rgba(39, 174, 96, 0.12);
+    color: var(--color-success);
+    border: 1px solid rgba(39, 174, 96, 0.2);
+}
+
+.health-warning {
+    background-color: rgba(243, 156, 18, 0.12);
+    color: var(--color-warning);
+    border: 1px solid rgba(243, 156, 18, 0.2);
+}
+
+.community-summary {
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
 .last-updated {
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
@@ -182,6 +220,37 @@
     transition: var(--transition);
 }
 
+.action-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.action-list li {
+    margin-bottom: var(--spacing-md);
+}
+
+.action-list li:last-child {
+    margin-bottom: 0;
+}
+
+.action-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(2, 117, 184, 0.08);
+    border-radius: var(--border-radius-md);
+    color: var(--color-primary-blue);
+    border: 1px solid rgba(2, 117, 184, 0.2);
+}
+
+.action-list a:hover {
+    color: var(--color-primary-red);
+    border-color: rgba(212, 0, 0, 0.2);
+    background: rgba(212, 0, 0, 0.08);
+}
+
 .sidebar-card a:hover {
     color: var(--color-primary-red);
 }
@@ -262,6 +331,21 @@
     margin-bottom: var(--spacing-lg);
     border-bottom: 2px solid var(--color-primary-blue);
     padding-bottom: var(--spacing-md);
+}
+
+.feedback-hint {
+    background: rgba(39, 174, 96, 0.08);
+    border: 1px solid rgba(39, 174, 96, 0.2);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-dark-gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.feedback-hint strong {
+    color: var(--color-primary-dark);
 }
 
 .giscus-container {

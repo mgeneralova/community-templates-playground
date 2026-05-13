@@ -59,7 +59,7 @@ permalink: /
                 
                 <!-- Actions -->
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
-                    <a href="{{ integration.url }}" class="btn btn-primary">View Details</a>
+                    <a href="{{ integration.url | relative_url }}" class="btn btn-primary">View Details</a>
                     <a href="https://github.com/{{ site.repository }}/tree/main/{{ integration.folder_path }}" 
                        target="_blank" class="btn btn-secondary">Repository</a>
                     <a href="https://github.com/{{ site.repository }}/issues/new?title=Issue:%20{{ integration.title }}" 

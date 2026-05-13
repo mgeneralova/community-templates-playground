@@ -89,7 +89,7 @@ a:hover {
    ======================================== */
 
 .navbar {
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-blue) 100%);
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-blue) 0%);
     color: var(--color-white);
     padding: var(--spacing-md) 0;
     box-shadow: var(--shadow-md);
@@ -123,13 +123,9 @@ a:hover {
 }
 
 .logo-icon {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-}
-
-.logo-text {
-    color: var(--color-white);
+    stroke: var(--color-primary-red);
+    width: 237px;
+    height: 48px;
 }
 
 .navbar-menu {
@@ -140,7 +136,7 @@ a:hover {
 }
 
 .navbar-menu a {
-    color: var(--color-white);
+    color: var(--color-dark-gray);
     font-weight: 500;
     transition: var(--transition);
 }

@@ -7,6 +7,9 @@ categories: ["Web Servers"]
 status: "active"
 author: "community"
 last_updated: "2024-05-10"
+community_score: 91
+discussion_count: 2
+open_issues: 1
 description: "Monitor Nginx Plus load balancer and web server with health checks, connection stats, and performance metrics."
 ---
 

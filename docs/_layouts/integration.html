@@ -26,10 +26,8 @@
             <div class="navbar-container">
                 <div class="navbar-brand">
                     <a href="{{ '/' | relative_url }}" class="logo">
-                        <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L15.09 8.26H22L17.55 12.5L19.64 18.74L12 14.3L4.36 18.74L6.45 12.5L2 8.26H8.91L12 2Z"/>
-                        </svg>
-                        {{ site.title }}
+                        <img src="{{ '/zabbix-logo.svg' | relative_url }}" alt="Zabbix logo" class="logo-icon">
+                        <span class="logo-text">Community Templates</span>
                     </a>
                 </div>
                 <ul class="navbar-menu">
@@ -40,6 +38,24 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            {% assign open_issues = page.open_issues | default: 0 %}
+            {% assign discussion_count = page.discussion_count | default: 0 %}
+            {% assign community_score = page.community_score | default: 0 %}
+            {% if page.last_updated %}
+                {% assign last_updated_ts = page.last_updated | date: '%s' %}
+                {% assign age = 'now' | date: '%s' | minus: last_updated_ts %}
+            {% else %}
+                {% assign age = 0 %}
+            {% endif %}
+            {% assign health_label = 'Healthy' %}
+            {% assign health_class = 'health-good' %}
+            {% if page.status == 'broken' or open_issues > 5 or age > 31536000 %}
+                {% assign health_label = 'At Risk' %}
+                {% assign health_class = 'health-warning' %}
+            {% elsif page.status == 'stale' or open_issues > 0 or discussion_count > 0 or community_score < 50 %}
+                {% assign health_label = 'Needs Attention' %}
+                {% assign health_class = 'health-warning' %}
+            {% endif %}
             <div class="integration-container">
                 <!-- Header Section -->
                 <div class="integration-header">
@@ -52,6 +68,10 @@
                             {% if page.last_updated %}
                             <span class="last-updated">Updated: {{ page.last_updated }}</span>
                             {% endif %}
+                        </div>
+                        <div class="community-header">
+                            <span class="health-pill {{ health_class }}">Community Health: {{ health_label }}</span>
+                            <span class="community-summary">👍 {{ community_score }} | 💬 {{ discussion_count }} discussions</span>
                         </div>
                     </div>
                     <div class="integration-actions">
@@ -71,10 +91,6 @@
                 <div class="integration-content-grid">
                     <!-- Main Content Column -->
                     <div class="integration-main">
-                        <div class="integration-body">
-                            {{ content }}
-                        </div>
-
                         <!-- Activity Status -->
                         <div class="activity-section">
                             <h3>Activity Status</h3>
@@ -84,6 +100,9 @@
                         <!-- Community Feedback -->
                         <div class="feedback-section">
                             <h3>Community Feedback & Ratings</h3>
+                            <p class="feedback-hint">
+                                💡 <strong>How to participate:</strong> React with emojis below to rate this template, or start a discussion via GitHub Discussions. Your feedback helps the community!
+                            </p>
                             <!-- Giscus Comments -->
                             <div class="giscus-container" 
                                  data-repo="{{ site.repository }}"
@@ -101,6 +120,12 @@
                                  async>
                             </div>
                         </div>
+
+                        <hr style="margin: 2rem 0; border: none; border-top: 2px solid #E1E8ED;">
+
+                        <div class="integration-body">
+                            {{ content }}
+                        </div>
                     </div>
 
                     <!-- Sidebar -->
@@ -116,6 +141,18 @@
                                 <li>
                                     <strong>Folder:</strong>
                                     <code>{{ page.folder_path }}</code>
+                                </li>
+                                <li>
+                                    <strong>Community score:</strong>
+                                    <a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">👍 {{ community_score }}</a>
+                                </li>
+                                <li>
+                                    <strong>Discussions:</strong>
+                                    <a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">💬 {{ discussion_count }}</a>
+                                </li>
+                                <li>
+                                    <strong>Open issues:</strong>
+                                    <a href="https://github.com/{{ site.repository }}/issues?q=is%3Aissue+{{ page.title | uri_escape }}" target="_blank">{{ open_issues }}</a>
                                 </li>
                                 {% if page.author %}
                                 <li>
@@ -155,6 +192,15 @@
                             </ul>
                         </div>
                         {% endif %}
+
+                        <div class="sidebar-card">
+                            <h4>Community Actions</h4>
+                            <ul class="action-list">
+                                <li><a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">Discuss on GitHub</a></li>
+                                <li><a href="https://github.com/{{ site.repository }}/issues?q=is%3Aissue+{{ page.title | uri_escape }}" target="_blank">Review related issues</a></li>
+                                <li><a href="https://github.com/{{ site.repository }}/issues/new?title=Review:%20{{ page.title | uri_escape }}&body=Please%20review%20this%20template." target="_blank">Request a review</a></li>
+                            </ul>
+                        </div>
 
                         <!-- Related Templates Card -->
                         <div class="sidebar-card">
