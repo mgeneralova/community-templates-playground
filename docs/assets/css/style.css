@@ -123,9 +123,13 @@ a:hover {
 }
 
 .logo-icon {
-    stroke: var(--color-primary-red);
     width: 28px;
     height: 28px;
+    object-fit: contain;
+}
+
+.logo-text {
+    color: var(--color-white);
 }
 
 .navbar-menu {
