@@ -23,10 +23,10 @@ permalink: /
 
     <!-- Filter Section -->
     <div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-        <a href="/" class="btn btn-secondary" style="cursor: pointer;">All Templates</a>
-        <a href="/?tag=Cloud" class="btn btn-secondary" style="cursor: pointer;">Cloud</a>
-        <a href="/?tag=Network" class="btn btn-secondary" style="cursor: pointer;">Network</a>
-        <a href="/?tag=Monitoring" class="btn btn-secondary" style="cursor: pointer;">Monitoring</a>
+        <a href="{{ '/' | relative_url }}" class="btn btn-secondary" style="cursor: pointer;">All Templates</a>
+        <a href="{{ '/' | relative_url }}?tag=Cloud" class="btn btn-secondary" style="cursor: pointer;">Cloud</a>
+        <a href="{{ '/' | relative_url }}?tag=Network" class="btn btn-secondary" style="cursor: pointer;">Network</a>
+        <a href="{{ '/' | relative_url }}?tag=Monitoring" class="btn btn-secondary" style="cursor: pointer;">Monitoring</a>
     </div>
 
     <!-- Templates Grid -->
@@ -52,7 +52,7 @@ permalink: /
                 {% if integration.tags %}
                 <div class="tags">
                     {% for tag in integration.tags %}
-                        <a href="/?tag={{ tag }}" class="tag">{{ tag }}</a>
+                        <a href="{{ '/' | relative_url }}?tag={{ tag }}" class="tag">{{ tag }}</a>
                     {% endfor %}
                 </div>
                 {% endif %}
