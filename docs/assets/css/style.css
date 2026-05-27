@@ -380,7 +380,7 @@ a:hover {
    ======================================== */
 
 .footer {
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-blue) 100%);
+    background: var(--color-dark-gray);
     color: var(--color-white);
     margin-top: auto;
     padding: var(--spacing-2xl) 0;
@@ -398,7 +398,7 @@ a:hover {
 
 .footer-section h4 {
     margin-bottom: var(--spacing-md);
-    color: var(--color-primary-red);
+    color: var(--color-white);
 }
 
 .footer-section ul {
@@ -410,13 +410,13 @@ a:hover {
 }
 
 .footer-section a {
-    color: var(--color-white);
+    color: var(--color-light-gray);
     text-decoration: none;
     transition: var(--transition);
 }
 
 .footer-section a:hover {
-    color: var(--color-primary-red);
+    color: var(--color-white);
 }
 
 .footer-bottom {
