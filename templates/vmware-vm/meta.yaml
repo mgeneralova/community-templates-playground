@@ -1,0 +1,17 @@
+title: "VMware VM"
+description: "Monitor VMware virtual machines and hypervisors using Zabbix VMware monitoring. Discovers VMs, hypervisors, and clusters automatically via the VMware API."
+author: "community"
+maintainer: ""
+zabbix_tested_up_to: "6.0"
+tested_with: "5.0, 5.4, 6.0"
+category: ["Virtualization"]
+screenshot: false
+versions: ["5.0", "5.4", "6.0"]
+type: template
+
+status: update_needed
+maintained: false
+weight: 70
+last_updated: "2023-04-10"
+open_issues: 3
+discussion_count: 8

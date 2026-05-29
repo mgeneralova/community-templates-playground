@@ -11,12 +11,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Collections
-collections:
-  integrations:
-    output: true
-    permalink: /integrations/:name/
-
 # Build settings
 markdown: kramdown
 highlighter: rouge
@@ -29,11 +23,6 @@ exclude:
 
 # Front Matter defaults
 defaults:
-  - scope:
-      path: "_integrations"
-      type: "integrations"
-    values:
-      layout: "integration"
   - scope:
       path: ""
       type: "pages"

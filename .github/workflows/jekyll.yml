@@ -73,17 +73,17 @@ jobs:
           bundler-cache: true
           cache-version: 0
 
+      - name: Check Jekyll Build
+        run: bundle exec jekyll build --source docs --destination ./_site
+
+      - name: Lint meta.yaml files
+        run: |
+          for file in templates/*/meta.yaml; do
+            echo "Checking $file..."
+            ruby -ryaml -e "YAML.load_file('$file')" || exit 1
+          done
+
       - name: Run HTML Proofer
         run: |
           bundle exec htmlproofer ./_site --disable-external --allow-hash-href || true
         continue-on-error: true
-
-      - name: Check Jekyll Build
-        run: bundle exec jekyll build --source docs --destination ./_site
-
-      - name: Lint YAML Front Matter
-        run: |
-          for file in docs/_integrations/*.md; do
-            echo "Checking $file..."
-            ruby -ryaml -e "YAML.load_file('$file')" || exit 1
-          done

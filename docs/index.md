@@ -30,28 +30,27 @@ permalink: /
     </div>
 
     <!-- Templates Grid -->
+    {% assign template_pages = site.pages | where_exp: "p", "p.dir == '/templates/'" | sort: "community_score" | reverse %}
     <div class="cards-grid">
-        {% for integration in site.integrations %}
+        {% for tmpl in template_pages %}
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">{{ integration.title }}</h2>
+                    <h2 class="card-title">{{ tmpl.title }}</h2>
                 </div>
                 
-                <p class="card-description">
-                    {{ integration.content | strip_html | truncatewords: 20 }}
-                </p>
+                <p class="card-description">{{ tmpl.description | truncatewords: 20 }}</p>
                 
                 <!-- Status Badge -->
                 <div style="margin-bottom: 1rem;">
-                    <span class="status-badge status-{{ integration.status }}">
-                        {{ integration.status | capitalize }}
+                    <span class="status-badge status-{{ tmpl.status }}">
+                        {{ tmpl.status | capitalize }}
                     </span>
                 </div>
                 
                 <!-- Tags -->
-                {% if integration.tags %}
+                {% if tmpl.tags %}
                 <div class="tags">
-                    {% for tag in integration.tags %}
+                    {% for tag in tmpl.tags %}
                         <a href="{{ '/' | relative_url }}?tag={{ tag }}" class="tag">{{ tag }}</a>
                     {% endfor %}
                 </div>
@@ -59,10 +58,10 @@ permalink: /
                 
                 <!-- Actions -->
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
-                    <a href="{{ integration.url | relative_url }}" class="btn btn-primary">View Details</a>
-                    <a href="https://github.com/{{ site.repository }}/tree/main/{{ integration.folder_path }}" 
+                    <a href="{{ tmpl.url | relative_url }}" class="btn btn-primary">View Details</a>
+                    <a href="https://github.com/{{ site.repository }}/tree/main/{{ tmpl.folder_path }}" 
                        target="_blank" class="btn btn-secondary">Repository</a>
-                    <a href="https://github.com/{{ site.repository }}/issues/new?title=Issue:%20{{ integration.title }}" 
+                    <a href="https://github.com/{{ site.repository }}/issues/new?title=Issue:%20{{ tmpl.title }}" 
                        target="_blank" class="btn btn-danger">Report</a>
                 </div>
             </div>
@@ -70,10 +69,10 @@ permalink: /
     </div>
 
     <!-- Empty State -->
-    {% if site.integrations.size == 0 %}
+    {% if template_pages.size == 0 %}
     <div style="text-align: center; padding: 3rem; background: white; border-radius: 8px; border: 1px solid #E1E8ED;">
         <h3 style="color: #7F8C8D;">No templates found</h3>
-        <p>Start by creating your first integration in the <code>_integrations</code> folder.</p>
+        <p>Add templates to the <code>templates/</code> directory with a <code>meta.yaml</code> file.</p>
     </div>
     {% endif %}
 

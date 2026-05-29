@@ -1,0 +1,17 @@
+title: "Patroni Cluster by HTTP"
+description: "Monitor Patroni PostgreSQL high-availability clusters via the Patroni REST API. Tracks cluster leader/replica state, replication lag, timeline, and node health."
+author: "community"
+maintainer: ""
+zabbix_tested_up_to: "7.4"
+tested_with: "5.0, 7.4"
+category: ["Databases"]
+screenshot: false
+versions: ["5.0", "7.4"]
+type: template
+
+status: active
+maintained: false
+weight: 150
+last_updated: "2025-04-22"
+open_issues: 0
+discussion_count: 14
