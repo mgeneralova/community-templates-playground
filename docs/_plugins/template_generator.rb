@@ -7,7 +7,8 @@ module Jekyll
     priority :normal
 
     def generate(site)
-      templates_dir = Pathname.new(site.source).parent.join("templates")
+      # Walk up from docs/_plugins/ → docs/ → repo root → templates/
+      templates_dir = Pathname.new(File.expand_path("../../templates", File.dirname(__FILE__)))
       return unless templates_dir.exist?
 
       Dir.glob(templates_dir.join("*/meta.yaml")).sort.each do |meta_path|
