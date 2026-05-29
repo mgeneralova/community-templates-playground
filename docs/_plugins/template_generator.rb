@@ -7,8 +7,12 @@ module Jekyll
     priority :normal
 
     def generate(site)
+      # site.source is the docs/ dir; templates/ lives one level up
       templates_dir = Pathname.new(site.source).parent.join("templates")
-      return unless templates_dir.exist?
+      unless templates_dir.exist?
+        Jekyll.logger.warn "TemplateGenerator:", "templates dir not found at #{templates_dir}"
+        return
+      end
 
       Dir.glob(templates_dir.join("*/meta.yaml")).sort.each do |meta_path|
         template_name = File.basename(File.dirname(meta_path))
@@ -17,13 +21,16 @@ module Jekyll
 
         body = readme_body(templates_dir, template_name, meta["versions"] || [])
         site.pages << TemplatePage.new(site, template_name, meta, body)
+        Jekyll.logger.info "TemplateGenerator:", "added page for #{template_name}"
       end
     end
 
     private
 
     def readme_body(templates_dir, name, versions)
-      versions.sort_by { |v| Gem::Version.new(v.to_s) rescue v.to_s }.reverse.each do |v|
+      # Sort versions numerically, pick highest
+      sorted = versions.sort_by { |v| v.to_s.split(".").map { |n| n.to_i } }.reverse
+      sorted.each do |v|
         readme = templates_dir.join(name, v.to_s, "README.md")
         next unless readme.exist?
         return readme.read.sub(/\A#[^\n]*\n+/, "").strip
@@ -37,7 +44,8 @@ module Jekyll
       @site  = site
       @base  = site.source
       @dir   = "templates"
-      @name  = "#{template_name}.html"
+      # Use .md so Jekyll converts README Markdown content through kramdown
+      @name  = "#{template_name}.md"
 
       process(@name)
 
@@ -57,6 +65,7 @@ module Jekyll
         "discussion_count"    => meta["discussion_count"] || 0,
         "open_issues"         => meta["open_issues"] || 0,
         "description"         => meta["description"].to_s,
+        "is_template"         => true,
       }
 
       @content = body

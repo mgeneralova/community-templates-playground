@@ -30,7 +30,7 @@ permalink: /
     </div>
 
     <!-- Templates Grid -->
-    {% assign template_pages = site.pages | where_exp: "p", "p.dir == '/templates/'" | sort: "community_score" | reverse %}
+    {% assign template_pages = site.pages | where: "is_template", true | sort: "community_score" | reverse %}
     <div class="cards-grid">
         {% for tmpl in template_pages %}
             <div class="card">
