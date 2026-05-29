@@ -1,0 +1,17 @@
+title: "Elasticsearch Cluster by HTTP"
+description: "Script-free Elasticsearch cluster monitoring using the Zabbix HTTP Agent. Monitors cluster health, node statistics, and index performance for on-premise and cloud-hosted ES (including AWS Elasticsearch)."
+author: "community"
+maintainer: ""
+zabbix_tested_up_to: "6.0"
+tested_with: "5.0, 5.4, 6.0"
+category: ["Databases", "Applications"]
+screenshot: false
+versions: ["5.0", "5.4", "6.0"]
+type: template
+
+status: update_needed
+maintained: false
+weight: 30
+last_updated: "2023-02-14"
+open_issues: 5
+discussion_count: 4

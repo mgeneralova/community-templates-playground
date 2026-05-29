@@ -1,0 +1,17 @@
+title: "Cisco BGP SNMP"
+description: "Monitor Cisco BGP sessions via SNMP. Tracks admin status, operational state, established time, AS names, maximum and accepted prefixes, and BGP last error using CISCO-BGP4-MIB."
+author: "flaviojunior1995"
+maintainer: "flaviojunior1995"
+zabbix_tested_up_to: "6.0"
+tested_with: "5.0, 5.4, 6.0"
+category: ["Network Devices"]
+screenshot: false
+versions: ["5.0", "5.4", "6.0"]
+type: template
+
+status: update_needed
+maintained: true
+weight: 180
+last_updated: "2023-11-20"
+open_issues: 2
+discussion_count: 9
