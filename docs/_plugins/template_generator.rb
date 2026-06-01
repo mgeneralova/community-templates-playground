@@ -9,15 +9,27 @@ module Jekyll
     def generate(site)
       # Walk up from docs/_plugins/ → docs/ → repo root → templates/
       templates_dir = Pathname.new(File.expand_path("../../templates", File.dirname(__FILE__)))
-      return unless templates_dir.exist?
 
-      Dir.glob(templates_dir.join("*/meta.yaml")).sort.each do |meta_path|
+      Jekyll.logger.info "TemplateGenerator:", "__FILE__      = #{__FILE__}"
+      Jekyll.logger.info "TemplateGenerator:", "templates_dir = #{templates_dir}"
+      Jekyll.logger.info "TemplateGenerator:", "exists?       = #{templates_dir.exist?}"
+
+      unless templates_dir.exist?
+        Jekyll.logger.warn "TemplateGenerator:", "templates/ not found, skipping"
+        return
+      end
+
+      meta_files = Dir.glob(templates_dir.join("*/meta.yaml")).sort
+      Jekyll.logger.info "TemplateGenerator:", "meta.yaml files found: #{meta_files.size}"
+
+      meta_files.each do |meta_path|
         template_name = File.basename(File.dirname(meta_path))
         meta = YAML.load_file(meta_path)
         next unless meta.is_a?(Hash)
 
         body = readme_body(templates_dir, template_name, meta["versions"] || [])
         site.pages << TemplatePage.new(site, template_name, meta, body)
+        Jekyll.logger.info "TemplateGenerator:", "added page: #{template_name}"
       end
     end
 
