@@ -12,6 +12,7 @@ plugins:
   - jekyll-sitemap
 
 # Build settings
+safe: false
 markdown: kramdown
 highlighter: rouge
 exclude:
