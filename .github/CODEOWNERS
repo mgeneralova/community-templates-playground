@@ -1,0 +1,4 @@
+# Changes to site infrastructure require maintainer review.
+# Contributors should only need to touch templates/.
+docs/       @mgeneralova
+.github/    @mgeneralova

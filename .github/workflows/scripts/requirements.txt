@@ -2,3 +2,5 @@ zabbix-utils>=2.0.0
 tabulate
 ruamel.yaml
 lxml
+pyyaml
+requests

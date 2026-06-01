@@ -1,0 +1,36 @@
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+*.gem
+
+# Bundles
+.bundle/
+vendor/bundle/
+Gemfile.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+.env
+.env.local
+
+# Build
+*.log
+dist/
+build/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Dependencies
+node_modules/
