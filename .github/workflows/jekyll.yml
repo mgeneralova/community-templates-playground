@@ -33,13 +33,15 @@ jobs:
           ruby-version: '3.1'
           bundler-cache: true
           cache-version: 0
+          working-directory: docs
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
       - name: Build with Jekyll
-        run: bundle exec jekyll build --source docs --destination ./_site --baseurl "${{ steps.pages.outputs.base_path }}"
+        working-directory: docs
+        run: bundle exec jekyll build --destination ../_site --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
@@ -72,9 +74,11 @@ jobs:
           ruby-version: '3.1'
           bundler-cache: true
           cache-version: 0
+          working-directory: docs
 
       - name: Check Jekyll Build
-        run: bundle exec jekyll build --source docs --destination ./_site
+        working-directory: docs
+        run: bundle exec jekyll build --destination ../_site
 
       - name: Lint meta.yaml files
         run: |
@@ -86,4 +90,5 @@ jobs:
       - name: Run HTML Proofer
         run: |
           bundle exec htmlproofer ./_site --disable-external --allow-hash-href || true
+        working-directory: docs
         continue-on-error: true

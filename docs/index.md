@@ -42,7 +42,7 @@ permalink: /
                 
                 <!-- Status Badge -->
                 <div style="margin-bottom: 1rem;">
-                    <span class="status-badge status-{{ tmpl.status }}">
+                    <span class="badge badge-{{ tmpl.status }}">
                         {{ tmpl.status | capitalize }}
                     </span>
                 </div>

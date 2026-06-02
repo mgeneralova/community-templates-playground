@@ -156,20 +156,6 @@ a:hover {
     opacity: 0.9;
 }
 
-.btn-primary {
-    background-color: var(--color-primary-red) !important;
-    color: var(--color-white) !important;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--border-radius-md);
-    border: 2px solid var(--color-primary-red);
-    font-weight: 600;
-}
-
-.btn-primary:hover {
-    background-color: transparent !important;
-    color: var(--color-primary-red) !important;
-}
-
 /* ========================================
    Buttons
    ======================================== */
@@ -190,36 +176,36 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: var(--color-primary-red);
+    background-color: var(--color-primary-dark);
     color: var(--color-white);
-    border-color: var(--color-primary-red);
+    border-color: var(--color-primary-dark);
 }
 
 .btn-primary:hover {
-    background-color: #B30000;
-    border-color: #B30000;
+    background-color: #083759;
+    border-color: #083759;
 }
 
 .btn-secondary {
-    background-color: var(--color-primary-blue);
-    color: var(--color-white);
-    border-color: var(--color-primary-blue);
+    background-color: transparent;
+    color: var(--color-dark-blue);
+    border-color: var(--color-dark-blue);
 }
 
 .btn-secondary:hover {
-    background-color: #015A9F;
-    border-color: #015A9F;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: var(--color-white);
 }
 
 .btn-danger {
-    background-color: transparent;
-    color: var(--color-primary-red);
+    background-color: var(--color-primary-red);
+    color: var(--color-white);
     border-color: var(--color-primary-red);
 }
 
 .btn-danger:hover {
-    background-color: var(--color-primary-red);
-    color: var(--color-white);
+    background-color: #B30000;
+    border-color: #B30000;
 }
 
 /* ========================================
@@ -245,7 +231,6 @@ a:hover {
 
 .card {
     background: var(--color-white);
-    border-radius: var(--border-radius-lg);
     padding: var(--spacing-xl);
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
@@ -328,7 +313,7 @@ a:hover {
     border-color: var(--color-primary-blue);
 }
 
-.status-badge {
+.badge {
     display: inline-block;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: 20px;
@@ -336,26 +321,18 @@ a:hover {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
-
-.status-active {
     background-color: #D4EDDA;
     color: var(--color-success);
 }
 
-.status-stale {
-    background-color: #FFF3CD;
-    color: var(--color-warning);
-}
-
-.status-unmaintained {
+.badge-broken {
     background-color: #F8D7DA;
     color: var(--color-danger);
 }
 
-.status-experimental {
-    background-color: #D1ECF1;
-    color: var(--color-primary-blue);
+.badge-update_needed {
+    background-color: #FFF3CD;
+    color: var(--color-warning);
 }
 
 /* Category Tags with Distinct Colors */
@@ -366,7 +343,7 @@ a:hover {
 }
 
 .tags-list .tag {
-    background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-dark) 100%);
+    background: var(--color-primary-blue);
     color: var(--color-white);
     border: none;
 }
@@ -467,7 +444,6 @@ p {
 code {
     background-color: var(--color-light-gray);
     padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius-sm);
     font-family: 'Monaco', 'Menlo', monospace;
     font-size: 0.9rem;
     color: var(--color-primary-red);
@@ -477,7 +453,6 @@ pre {
     background-color: #282C34;
     color: #ABB2BF;
     padding: var(--spacing-lg);
-    border-radius: var(--border-radius-md);
     overflow-x: auto;
     margin-bottom: var(--spacing-lg);
 }

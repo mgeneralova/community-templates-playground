@@ -21,6 +21,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
+  - vendor
 
 # Front Matter defaults
 defaults:

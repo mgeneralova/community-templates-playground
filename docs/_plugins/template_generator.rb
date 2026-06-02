@@ -27,7 +27,8 @@ module Jekyll
         meta = YAML.load_file(meta_path)
         next unless meta.is_a?(Hash)
 
-        body = readme_body(templates_dir, template_name, meta["versions"] || [])
+        raw  = readme_body(templates_dir, template_name, meta["versions"] || [])
+        body = site.find_converter_instance(Jekyll::Converters::Markdown).convert(raw)
         site.pages << TemplatePage.new(site, template_name, meta, body)
         Jekyll.logger.info "TemplateGenerator:", "added page: #{template_name}"
       end
@@ -69,6 +70,7 @@ module Jekyll
         "community_score"     => meta["weight"] || 0,
         "discussion_count"    => meta["discussion_count"] || 0,
         "open_issues"         => meta["open_issues"] || 0,
+        "screenshot"          => meta["screenshot"] || false,
         "description"         => meta["description"].to_s,
       }
 

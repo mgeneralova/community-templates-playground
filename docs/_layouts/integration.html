@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ page.title }} - {{ site.title }}</title>
     <meta name="description" content="{{ page.description | default: site.description }}">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/integration.css' | relative_url }}">
-    
+
     <!-- SEO -->
     {% seo %}
 </head>
@@ -37,142 +37,101 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="main-content integration-main-content">
             {% assign open_issues = page.open_issues | default: 0 %}
             {% assign discussion_count = page.discussion_count | default: 0 %}
             {% assign community_score = page.community_score | default: 0 %}
-            {% if page.last_updated %}
-                {% assign last_updated_ts = page.last_updated | date: '%s' %}
-                {% assign age = 'now' | date: '%s' | minus: last_updated_ts %}
-            {% else %}
-                {% assign age = 0 %}
-            {% endif %}
-            {% assign health_label = 'Healthy' %}
-            {% assign health_class = 'health-good' %}
-            {% if page.status == 'broken' or open_issues > 5 or age > 31536000 %}
-                {% assign health_label = 'At Risk' %}
-                {% assign health_class = 'health-warning' %}
-            {% elsif page.status == 'stale' or open_issues > 0 or discussion_count > 0 or community_score < 50 %}
-                {% assign health_label = 'Needs Attention' %}
-                {% assign health_class = 'health-warning' %}
-            {% endif %}
-            <div class="integration-container">
-                <!-- Header Section -->
-                <div class="integration-header">
+
+            <!-- Full-width header banner -->
+            <div class="integration-header">
+                <div class="integration-header-inner">
                     <div class="integration-title-section">
                         <h1>{{ page.title }}</h1>
                         <div class="integration-metadata">
-                            <div class="status-badge status-{{ page.status }}">
-                                {{ page.status | capitalize }}
-                            </div>
+                            <span class="badge badge-{{ page.status }}">
+                                {{ page.status | replace: '_', ' ' | capitalize }}
+                            </span>
                             {% if page.last_updated %}
                             <span class="last-updated">Updated: {{ page.last_updated }}</span>
                             {% endif %}
-                        </div>
-                        <div class="community-header">
-                            <span class="health-pill {{ health_class }}">Community Health: {{ health_label }}</span>
-                            <span class="community-summary">👍 {{ community_score }} | 💬 {{ discussion_count }} discussions</span>
+                            {% if page.maintainer and page.maintainer != '' %}
+                            <span class="badge">Maintained</span>
+                            {% endif %}
+                            {% if page.screenshot %}
+                            <span class="badge">Screenshot</span>
+                            {% endif %}
+                            <span class="community-summary">💬 {{ discussion_count }}</span>
                         </div>
                     </div>
                     <div class="integration-actions">
                         <a href="https://github.com/{{ site.repository }}/tree/main/{{ page.folder_path }}" class="btn btn-primary" target="_blank">
-                            View in Repository
+                            View on GitHub
                         </a>
                         <a href="https://github.com/{{ site.repository }}/issues/new?title=Maintain:%20{{ page.title }}&body=I%20would%20like%20to%20maintain%20this%20template.&labels=maintainer-application" class="btn btn-secondary" target="_blank">
                             Apply to Maintain
                         </a>
-                        <a href="https://github.com/{{ site.repository }}/issues/new?title=Issue:%20{{ page.title }}&body=Please%20describe%20the%20issue.&labels=broken-report" class="btn btn-danger" target="_blank">
-                            Report Broken
-                        </a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Content Grid -->
+            <div class="disclaimer-bar" id="disclaimer-bar">
+                <div class="integration-container disclaimer-inner">
+                    <span>Community templates are offered as-is, Zabbix assumes no responsibility for their quality or performance.</span>
+                    <button class="disclaimer-close" onclick="document.getElementById('disclaimer-bar').style.display='none'" aria-label="Dismiss">✕</button>
+                </div>
+            </div>
+
+            <div class="integration-container">
                 <div class="integration-content-grid">
                     <!-- Main Content Column -->
                     <div class="integration-main">
-                        <!-- Activity Status -->
-                        <div class="activity-section">
-                            <h3>Activity Status</h3>
-                            <img src="https://img.shields.io/github/last-commit/{{ site.repository }}?label=Last%20Commit&style=flat-square" alt="Last Commit Badge">
-                        </div>
-
-                        {% assign section_parts = content | split: '<h2' %}
-                        {% assign top_sections = '' %}
-                        {% if section_parts.size > 1 %}
-                            {% assign top_sections = top_sections | append: '<h2' | append: section_parts[1] %}
-                        {% endif %}
-                        {% if section_parts.size > 2 %}
-                            {% assign top_sections = top_sections | append: '<h2' | append: section_parts[2] %}
-                        {% endif %}
-                        {% assign rest_sections = '' %}
-                        {% for part in section_parts %}
-                            {% if forloop.index0 > 2 %}
-                                {% assign rest_sections = rest_sections | append: '<h2' | append: part %}
-                            {% endif %}
-                        {% endfor %}
-
+                        <!-- Full README content -->
                         <div class="integration-body">
-                            {{ top_sections }}
+                            {{ content }}
                         </div>
 
-                        <!-- Community Feedback -->
+                        <!-- Community Feedback at bottom -->
                         <div class="feedback-section">
-                            <h3>Community Feedback & Ratings</h3>
-                            <p class="feedback-hint">
-                                💡 <strong>How to participate:</strong> React with emojis below to rate this template, or start a discussion via GitHub Discussions. Your feedback helps the community!
-                            </p>
-                            <!-- Giscus Comments -->
-                            <div class="giscus-container" 
-                                 data-repo="{{ site.repository }}"
-                                 data-repo-id="R_kgDOLtN4Xg"
-                                 data-category="Announcements"
-                                 data-category-id="DIC_kwDOLtN4Xs4CXWAH"
-                                 data-mapping="pathname"
-                                 data-strict="0"
-                                 data-reactions-enabled="1"
-                                 data-emit-metadata="0"
-                                 data-input-position="bottom"
-                                 data-theme="light"
-                                 data-lang="en"
-                                 crossorigin="anonymous"
-                                 async>
-                            </div>
-                            <script src="https://giscus.app/client.js" data-repo="{{ site.repository }}" data-repo-id="R_kgDOLtN4Xg" data-category="Announcements" data-category-id="DIC_kwDOLtN4Xs4CXWAH" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" async></script>
-                        </div>
-
-                        <hr style="margin: 2rem 0; border: none; border-top: 2px solid #E1E8ED;">
-
-                        <div class="integration-body">
-                            {{ rest_sections }}
+                            <h3>Community Feedback</h3>
+                            <script src="https://giscus.app/client.js"
+                                data-repo="{{ site.repository }}"
+                                data-repo-id="R_kgDOLtN4Xg"
+                                data-category="Announcements"
+                                data-category-id="DIC_kwDOLtN4Xs4CXWAH"
+                                data-mapping="pathname"
+                                data-strict="0"
+                                data-reactions-enabled="0"
+                                data-emit-metadata="0"
+                                data-input-position="bottom"
+                                data-theme="light"
+                                data-lang="en"
+                                crossorigin="anonymous"
+                                async>
+                            </script>
                         </div>
                     </div>
 
                     <!-- Sidebar -->
                     <aside class="integration-sidebar">
-                        <!-- Metadata Card -->
+                        <!-- Screenshot preview -->
+                        {% if page.screenshot %}
+                        {% assign screenshot_url = "https://raw.githubusercontent.com/" | append: site.repository | append: "/main/" | append: page.folder_path | append: "/dashboard.png" %}
+                        <div class="sidebar-card sidebar-screenshot">
+                            <img src="{{ screenshot_url }}" alt="{{ page.title }} dashboard screenshot" onclick="document.getElementById('screenshot-lightbox').style.display='flex'">
+                        </div>
+                        <div id="screenshot-lightbox" class="lightbox" onclick="this.style.display='none'">
+                            <button class="lightbox-close" onclick="document.getElementById('screenshot-lightbox').style.display='none'">&times;</button>
+                            <img src="{{ screenshot_url }}" alt="{{ page.title }} dashboard screenshot" onclick="event.stopPropagation()">
+                        </div>
+                        {% endif %}
+
+                        <!-- Information card -->
                         <div class="sidebar-card">
                             <h4>Information</h4>
                             <ul class="metadata-list">
                                 <li>
-                                    <strong>Status:</strong>
-                                    <span class="status-badge status-{{ page.status }}">{{ page.status | capitalize }}</span>
-                                </li>
-                                <li>
                                     <strong>Folder:</strong>
                                     <code>{{ page.folder_path }}</code>
-                                </li>
-                                <li>
-                                    <strong>Community score:</strong>
-                                    <a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">👍 {{ community_score }}</a>
-                                </li>
-                                <li>
-                                    <strong>Discussions:</strong>
-                                    <a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">💬 {{ discussion_count }}</a>
-                                </li>
-                                <li>
-                                    <strong>Open issues:</strong>
-                                    <a href="https://github.com/{{ site.repository }}/issues?q=is%3Aissue+{{ page.title | uri_escape }}" target="_blank">{{ open_issues }}</a>
                                 </li>
                                 {% if page.author %}
                                 <li>
@@ -186,13 +145,25 @@
                                     <a href="https://github.com/{{ page.maintainer }}" target="_blank">@{{ page.maintainer }}</a>
                                 </li>
                                 {% endif %}
+                                <li>
+                                    <strong>Discussions:</strong>
+                                    <a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">{{ discussion_count }}</a>
+                                </li>
+                                <li>
+                                    <strong>Open issues:</strong>
+                                    <a href="https://github.com/{{ site.repository }}/issues?q=is%3Aissue+{{ page.title | uri_escape }}" target="_blank">{{ open_issues }}</a>
+                                </li>
+                                <li>
+                                    <strong>Activity:</strong>
+                                    <img src="https://img.shields.io/github/last-commit/{{ site.repository }}?label=&style=flat-square" alt="Last commit">
+                                </li>
                             </ul>
                         </div>
 
-                        <!-- Tags Card -->
+                        <!-- Category / Tags (merged) -->
                         {% if page.tags %}
                         <div class="sidebar-card">
-                            <h4>Tags</h4>
+                            <h4>Category</h4>
                             <div class="tags-list">
                                 {% for tag in page.tags %}
                                 <a href="{{ '/' | relative_url }}?tag={{ tag }}" class="tag">{{ tag }}</a>
@@ -201,34 +172,16 @@
                         </div>
                         {% endif %}
 
-                        <!-- Categories Card -->
-                        {% if page.categories %}
+                        <!-- Links card (merged actions + resources + report) -->
                         <div class="sidebar-card">
-                            <h4>Categories</h4>
-                            <ul>
-                                {% for category in page.categories %}
-                                <li><a href="{{ '/' | relative_url }}?category={{ category }}">{{ category }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        {% endif %}
-
-                        <div class="sidebar-card">
-                            <h4>Community Actions</h4>
+                            <h4>Links</h4>
                             <ul class="action-list">
                                 <li><a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">Discuss on GitHub</a></li>
-                                <li><a href="https://github.com/{{ site.repository }}/issues?q=is%3Aissue+{{ page.title | uri_escape }}" target="_blank">Review related issues</a></li>
-                                <li><a href="https://github.com/{{ site.repository }}/issues/new?title=Review:%20{{ page.title | uri_escape }}&body=Please%20review%20this%20template." target="_blank">Request a review</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Related Templates Card -->
-                        <div class="sidebar-card">
-                            <h4>Resources</h4>
-                            <ul>
-                                <li><a href="https://github.com/{{ site.repository }}/issues">Report an issue</a></li>
-                                <li><a href="https://github.com/{{ site.repository }}">View repository</a></li>
-                                <li><a href="https://zabbix.com">Zabbix Official</a></li>
+                                <li><a href="https://github.com/{{ site.repository }}/issues?q=is%3Aissue+{{ page.title | uri_escape }}" target="_blank">Open issues</a></li>
+                                <li><a href="https://www.zabbix.com/documentation" target="_blank">Zabbix documentation</a></li>
+                                <li class="report-broken-item">
+                                    <a href="https://github.com/{{ site.repository }}/issues/new?title=Broken:%20{{ page.title | uri_escape }}&body=Please%20describe%20what%20is%20broken.&labels=broken-report" target="_blank">Report Broken</a>
+                                </li>
                             </ul>
                         </div>
                     </aside>
