@@ -70,6 +70,7 @@ module Jekyll
         "community_score"     => meta["weight"] || 0,
         "discussion_count"    => meta["discussion_count"] || 0,
         "open_issues"         => meta["open_issues"] || 0,
+        "screenshot"          => meta["screenshot"] || false,
         "description"         => meta["description"].to_s,
       }
 

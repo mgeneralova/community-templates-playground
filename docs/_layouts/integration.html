@@ -48,13 +48,19 @@
                     <div class="integration-title-section">
                         <h1>{{ page.title }}</h1>
                         <div class="integration-metadata">
-                            <span class="status-badge status-{{ page.status }}">
+                            <span class="badge badge-{{ page.status }}">
                                 {{ page.status | replace: '_', ' ' | capitalize }}
                             </span>
                             {% if page.last_updated %}
                             <span class="last-updated">Updated: {{ page.last_updated }}</span>
                             {% endif %}
-                            <span class="community-summary">👍 {{ community_score }} &nbsp;·&nbsp; 💬 {{ discussion_count }}</span>
+                            {% if page.maintainer and page.maintainer != '' %}
+                            <span class="badge">Maintained</span>
+                            {% endif %}
+                            {% if page.screenshot %}
+                            <span class="badge">Screenshot</span>
+                            {% endif %}
+                            <span class="community-summary">💬 {{ discussion_count }}</span>
                         </div>
                     </div>
                     <div class="integration-actions">
@@ -87,9 +93,6 @@
                         <!-- Community Feedback at bottom -->
                         <div class="feedback-section">
                             <h3>Community Feedback</h3>
-                            <p class="feedback-hint">
-                                React with emojis to rate this template, or start a discussion via GitHub Discussions.
-                            </p>
                             <script src="https://giscus.app/client.js"
                                 data-repo="{{ site.repository }}"
                                 data-repo-id="R_kgDOLtN4Xg"
@@ -97,7 +100,7 @@
                                 data-category-id="DIC_kwDOLtN4Xs4CXWAH"
                                 data-mapping="pathname"
                                 data-strict="0"
-                                data-reactions-enabled="1"
+                                data-reactions-enabled="0"
                                 data-emit-metadata="0"
                                 data-input-position="bottom"
                                 data-theme="light"
@@ -110,6 +113,18 @@
 
                     <!-- Sidebar -->
                     <aside class="integration-sidebar">
+                        <!-- Screenshot preview -->
+                        {% if page.screenshot %}
+                        {% assign screenshot_url = "https://raw.githubusercontent.com/" | append: site.repository | append: "/main/" | append: page.folder_path | append: "/dashboard.png" %}
+                        <div class="sidebar-card sidebar-screenshot">
+                            <img src="{{ screenshot_url }}" alt="{{ page.title }} dashboard screenshot" onclick="document.getElementById('screenshot-lightbox').style.display='flex'">
+                        </div>
+                        <div id="screenshot-lightbox" class="lightbox" onclick="this.style.display='none'">
+                            <button class="lightbox-close" onclick="document.getElementById('screenshot-lightbox').style.display='none'">&times;</button>
+                            <img src="{{ screenshot_url }}" alt="{{ page.title }} dashboard screenshot" onclick="event.stopPropagation()">
+                        </div>
+                        {% endif %}
+
                         <!-- Information card -->
                         <div class="sidebar-card">
                             <h4>Information</h4>
@@ -130,10 +145,6 @@
                                     <a href="https://github.com/{{ page.maintainer }}" target="_blank">@{{ page.maintainer }}</a>
                                 </li>
                                 {% endif %}
-                                <li>
-                                    <strong>Score:</strong>
-                                    <span>👍 {{ community_score }}</span>
-                                </li>
                                 <li>
                                     <strong>Discussions:</strong>
                                     <a href="https://github.com/{{ site.repository }}/discussions?discussions_q={{ page.title | uri_escape }}" target="_blank">{{ discussion_count }}</a>

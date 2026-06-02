@@ -188,8 +188,8 @@ a:hover {
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--color-white);
-    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--color-dark-blue);
+    border-color: var(--color-dark-blue);
 }
 
 .btn-secondary:hover {
@@ -313,7 +313,7 @@ a:hover {
     border-color: var(--color-primary-blue);
 }
 
-.status-badge {
+.badge {
     display: inline-block;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: 20px;
@@ -321,26 +321,18 @@ a:hover {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}
-
-.status-active {
     background-color: #D4EDDA;
     color: var(--color-success);
 }
 
-.status-stale {
-    background-color: #FFF3CD;
-    color: var(--color-warning);
-}
-
-.status-unmaintained {
+.badge-broken {
     background-color: #F8D7DA;
     color: var(--color-danger);
 }
 
-.status-experimental {
-    background-color: #D1ECF1;
-    color: var(--color-primary-blue);
+.badge-update_needed {
+    background-color: #FFF3CD;
+    color: var(--color-warning);
 }
 
 /* Category Tags with Distinct Colors */

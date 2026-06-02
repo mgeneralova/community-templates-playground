@@ -5,7 +5,7 @@ maintainer: ""
 zabbix_tested_up_to: "6.0"
 tested_with: "5.0, 6.0"
 category: ["Cloud", "AWS"]
-screenshot: false
+screenshot: true
 versions: ["5.0", "6.0"]
 type: template
 

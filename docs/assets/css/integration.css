@@ -175,6 +175,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-bottom: var(--spacing-lg);
+    table-layout: fixed;
 }
 
 .integration-body table th,
@@ -182,6 +183,8 @@
     padding: var(--spacing-md);
     border: 1px solid var(--color-border);
     text-align: left;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .integration-body table th {
@@ -254,6 +257,53 @@
 
 .sidebar-card:hover {
     border-color: var(--color-primary-blue);
+}
+
+.sidebar-screenshot {
+    padding: 0;
+    overflow: hidden;
+}
+
+.sidebar-screenshot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: zoom-in;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #888;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lightbox-close:hover {
+    background: #666;
 }
 
 .sidebar-card h4 {
