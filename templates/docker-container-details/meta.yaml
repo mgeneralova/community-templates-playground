@@ -1,17 +1,23 @@
-title: "Docker Container Details"
-description: "Monitor Docker containers using LLD discovery via the Docker socket. Includes a companion template for short-lived containers with configurable TTL-based cleanup."
-author: "mschroeter"
-maintainer: "mschroeter"
-zabbix_tested_up_to: "6.0"
-tested_with: "5.0, 5.4, 6.0"
-category: ["Virtualization", "Applications"]
+title: Docker Container Details
+description: Monitor Docker containers using LLD discovery via the Docker socket.
+  Includes a companion template for short-lived containers with configurable TTL-based
+  cleanup.
+author: mschroeter
+maintainer: mschroeter
+zabbix_tested_up_to: '6.0'
+tested_with: 5.0, 5.4, 6.0
+category:
+- Virtualization
+- Applications
 screenshot: false
-versions: ["5.0", "5.4", "6.0"]
+versions:
+- '5.0'
+- '5.4'
+- '6.0'
 type: template
-
 status: update_needed
 maintained: true
-weight: 230
-last_updated: "2023-08-05"
-open_issues: 1
-discussion_count: 18
+weight: 0
+last_updated: '2026-06-02'
+open_issues: 0
+discussion_count: 0

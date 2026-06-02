@@ -1,17 +1,22 @@
-title: "MySQL Windows Multi-Instance"
-description: "Monitor multiple MySQL instances on a Windows server using passive Zabbix checks and Python scripts. Designed for environments running several MySQL instances on the same host."
-author: "halley-it"
-maintainer: "halley-it"
-zabbix_tested_up_to: "6.0"
-tested_with: "5.0, 5.4, 6.0"
-category: ["Databases"]
+title: MySQL Windows Multi-Instance
+description: Monitor multiple MySQL instances on a Windows server using passive Zabbix
+  checks and Python scripts. Designed for environments running several MySQL instances
+  on the same host.
+author: halley-it
+maintainer: halley-it
+zabbix_tested_up_to: '6.0'
+tested_with: 5.0, 5.4, 6.0
+category:
+- Databases
 screenshot: false
-versions: ["5.0", "5.4", "6.0"]
+versions:
+- '5.0'
+- '5.4'
+- '6.0'
 type: template
-
 status: update_needed
 maintained: true
-weight: 160
-last_updated: "2023-09-12"
-open_issues: 1
-discussion_count: 5
+weight: 0
+last_updated: '2026-06-02'
+open_issues: 0
+discussion_count: 0
