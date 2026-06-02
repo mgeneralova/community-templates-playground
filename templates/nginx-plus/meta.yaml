@@ -1,17 +1,22 @@
-title: "App Nginx Plus"
-description: "LLD-based template for monitoring NGINX Plus using the NGINX Plus API. Automatically discovers virtual servers, upstreams, and server groups. Configure the API version via macro."
-author: "community"
-maintainer: ""
-zabbix_tested_up_to: "6.0"
-tested_with: "5.0, 5.4, 6.0"
-category: ["Applications"]
+title: App Nginx Plus
+description: LLD-based template for monitoring NGINX Plus using the NGINX Plus API.
+  Automatically discovers virtual servers, upstreams, and server groups. Configure
+  the API version via macro.
+author: community
+maintainer: ''
+zabbix_tested_up_to: '6.0'
+tested_with: 5.0, 5.4, 6.0
+category:
+- Applications
 screenshot: false
-versions: ["5.0", "5.4", "6.0"]
+versions:
+- '5.0'
+- '5.4'
+- '6.0'
 type: template
-
 status: update_needed
 maintained: false
-weight: 80
-last_updated: "2023-06-18"
-open_issues: 2
-discussion_count: 11
+weight: -100
+last_updated: '2026-06-02'
+open_issues: 0
+discussion_count: 0

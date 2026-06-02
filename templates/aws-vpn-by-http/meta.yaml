@@ -1,17 +1,21 @@
-title: "AWS VPN by HTTP"
-description: "Monitor AWS Site-to-Site VPN tunnels using the HTTP Agent. Tracks tunnel state (UP/DOWN), supports IAM access key and role-based authentication, and auto-discovers VPN connections."
-author: "karthick-dkk"
-maintainer: "karthick-dkk"
-zabbix_tested_up_to: "7.0"
-tested_with: "6.4, 7.0, 8.0"
-category: ["Cloud", "AWS"]
+title: AWS VPN by HTTP
+description: Monitor AWS Site-to-Site VPN tunnels using the HTTP Agent. Tracks tunnel
+  state (UP/DOWN), supports IAM access key and role-based authentication, and auto-discovers
+  VPN connections.
+author: karthick-dkk
+maintainer: karthick-dkk
+zabbix_tested_up_to: '7.0'
+tested_with: 6.4, 7.0, 8.0
+category:
+- Cloud
+- AWS
 screenshot: false
-versions: ["7.0"]
+versions:
+- '7.0'
 type: template
-
 status: active
 maintained: true
-weight: 280
-last_updated: "2025-01-15"
-open_issues: 1
-discussion_count: 12
+weight: 100
+last_updated: '2026-06-02'
+open_issues: 0
+discussion_count: 0

@@ -1,17 +1,20 @@
-title: "Linux by SSH Agentless"
-description: "Agentless Linux monitoring via SSH for environments where installing a Zabbix agent is not permitted. Collects CPU, memory, disk, uptime, OS version, and kernel metrics through remote SSH commands."
-author: "community"
-maintainer: ""
-zabbix_tested_up_to: "7.0"
-tested_with: "7.0"
-category: ["Operating Systems"]
+title: Linux by SSH Agentless
+description: Agentless Linux monitoring via SSH for environments where installing
+  a Zabbix agent is not permitted. Collects CPU, memory, disk, uptime, OS version,
+  and kernel metrics through remote SSH commands.
+author: community
+maintainer: ''
+zabbix_tested_up_to: '7.0'
+tested_with: '7.0'
+category:
+- Operating Systems
 screenshot: false
-versions: ["7.0"]
+versions:
+- '7.0'
 type: template
-
 status: active
 maintained: false
-weight: 100
-last_updated: "2024-09-30"
+weight: 0
+last_updated: '2026-06-02'
 open_issues: 0
-discussion_count: 6
+discussion_count: 0
