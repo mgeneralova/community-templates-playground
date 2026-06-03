@@ -1,18 +1,22 @@
-title: "AWS CloudWatch via Docker Wrapper"
-description: "Monitor AWS CloudWatch metrics using a NodeJS-based HTTP wrapper. Collects all CloudWatch metrics via the AWS SDK without requiring a Zabbix agent on monitored hosts."
-author: "community"
-maintainer: ""
-zabbix_tested_up_to: "6.0"
-tested_with: "5.0, 6.0"
-category: ["Cloud", "AWS"]
+title: AWS CloudWatch via Docker Wrapper
+description: Monitor AWS CloudWatch metrics using a NodeJS-based HTTP wrapper. Collects
+  all CloudWatch metrics via the AWS SDK without requiring a Zabbix agent on monitored
+  hosts.
+author: community
+maintainer: ''
+zabbix_tested_up_to: '6.0'
+tested_with: 5.0, 6.0
+category:
+- Cloud
+- AWS
 screenshot: true
-versions: ["5.0", "6.0"]
+versions:
+- '5.0'
+- '6.0'
 type: template
-
 status: update_needed
 maintained: false
-weight: 130
-last_updated: "2024-03-10"
-open_issues: 3
-discussion_count: 7
-
+weight: -50
+last_updated: '2026-06-03'
+open_issues: 0
+discussion_count: 0
