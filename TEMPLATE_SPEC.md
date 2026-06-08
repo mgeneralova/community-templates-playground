@@ -135,7 +135,8 @@ Derived from `meta.yaml` — `true` if `maintainer` field is set, `false` if emp
 | `outdated` | Template works but needs update for newer Zabbix version |
 | `claim-maintainer` | Request to take ownership of a template |
 | `clear-maintainer` | Maintainer stepping down |
-| `new-template` | PR adding a new template |
+| `new-integration` | Issue submitted via the no-git form; triggers the PR-creation workflow |
+| `new-template` | PR adding a new template (via Git) |
 | `enhancement` | Improvement to existing template |
 
 ### Zabbix team only
@@ -143,6 +144,64 @@ Derived from `meta.yaml` — `true` if `maintainer` field is set, `false` if emp
 | Label | Purpose |
 |-------|---------|
 | `needs-review` | Team triage label |
+
+---
+
+## No-Git Submission Flow
+
+Allows contributors without Git knowledge to submit templates via a GitHub Issue form. A GitHub Action automatically scaffolds the template directory and opens a PR on their behalf.
+
+### Entry point
+
+Site page `/submit.html` → "Submit via Form" button → GitHub issue form (`.github/ISSUE_TEMPLATE/submit_template.yml`).
+
+The form collects:
+
+| Field | Required | Notes |
+|-------|----------|-------|
+| Template Title | Yes | Used to derive the folder slug |
+| Description | Yes | Seeded into `README.md` if no README provided |
+| Category | Yes | Dropdown matching the fixed category list |
+| GitHub Username | Yes | Set as `author` |
+| Tested Zabbix Versions | Yes | Comma-separated; highest becomes the version subdirectory |
+| Template Status | Yes | `active` or `experimental` |
+| Template File Content | No | XML/YAML pasted inline; can be attached as a comment instead |
+| README / Documentation | No | If omitted, a stub README is generated |
+
+### Trigger
+
+GitHub automatically applies the `new-integration` label when the issue form is submitted. The workflow `.github/workflows/template_submission.yml` fires on `issues: labeled` when `label.name == 'new-integration'`.
+
+### What the workflow creates
+
+```
+templates/{slug}/
+  {latest-version}/
+    README.md        ← user-supplied or auto-generated stub
+    template.xml     ← if content was pasted and starts with '<'
+    template.yaml    ← if content was pasted and is YAML
+```
+
+`meta.yaml` is **not** created here — the daily `update_meta` Action generates it after the PR is merged, same as any other template.
+
+### Branch naming
+
+```
+template-submission/issue-{number}-{slug}
+```
+
+### Script
+
+`.github/workflows/scripts/process_submission.py` — parses the issue body, creates files, pushes the branch, opens the PR via `gh pr create`, and posts a comment on the issue with the PR URL.
+
+**Edge cases handled:**
+
+| Condition | Behavior |
+|-----------|-----------|
+| `templates/{slug}/` already exists | Posts a comment explaining the conflict; exits without creating a PR |
+| No template title in body | Posts a comment asking to fill in the title field |
+| Template file content omitted | README stub only; PR description flags that the file still needs to be attached |
+| `new-integration` label not in repo | `gh pr create` retried without `--label` |
 
 ---
 
