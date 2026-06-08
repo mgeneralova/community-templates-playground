@@ -1,0 +1,138 @@
+name: Submit a Template
+description: Share your Zabbix template with the community — no Git knowledge required!
+title: "[Template Submission]: "
+labels: ["new-integration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Submit your template
+
+        Fill out the form below and a pull request will be **automatically created** for you.
+        You don't need to know Git or fork the repository.
+
+        > **Tip:** If your template file is large, you can paste just the first few lines here and attach the full file as a comment after submitting.
+
+  - type: input
+    id: title
+    attributes:
+      label: Template Title
+      description: A clear, descriptive name for your template
+      placeholder: "e.g., Nginx Plus by HTTP Agent"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What does this template monitor? What are the key features?
+      placeholder: "Monitors Nginx Plus HTTP API. Collects metrics on connections, requests, upstreams, and server zones. Supports auto-discovery of upstreams."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which category best fits your template?
+      options:
+        - Applications
+        - Cloud
+        - Databases
+        - Network Appliances
+        - Network Devices
+        - Operating Systems
+        - Power (UPS)
+        - Printers
+        - Server Hardware
+        - Storage Devices
+        - Telephony
+        - Virtualization
+        - Web Scenarios
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Your GitHub Username
+      description: This will be set as the template author
+      placeholder: "your-github-username"
+    validations:
+      required: true
+
+  - type: input
+    id: zabbix_versions
+    attributes:
+      label: Tested Zabbix Versions
+      description: Which Zabbix versions did you test this template with? Separate multiple versions with commas.
+      placeholder: "6.0, 7.0, 7.4"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Template Status
+      description: How mature/stable is this template?
+      options:
+        - active
+        - experimental
+    validations:
+      required: true
+
+  - type: textarea
+    id: template_content
+    attributes:
+      label: Template File Content
+      description: |
+        Paste your template XML or YAML content here.
+        You can also attach a file after submitting the form.
+      render: xml
+    validations:
+      required: false
+
+  - type: textarea
+    id: readme
+    attributes:
+      label: README / Documentation
+      description: |
+        Installation instructions, requirements, configuration steps, etc.
+        Leave blank and a stub will be created automatically.
+      placeholder: |
+        ## Overview
+
+        This template monitors...
+
+        ## Requirements
+
+        - Zabbix 7.0+
+        - SNMP agent configured on the target host
+
+        ## Installation
+
+        1. Import the template into Zabbix via **Configuration → Templates → Import**
+        2. Assign the template to a host
+        3. Configure macros...
+
+        ## Configuration
+
+        | Macro | Default | Description |
+        |-------|---------|-------------|
+        | {$HOST.IP} | 127.0.0.1 | Target host IP |
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have tested this template with the Zabbix versions listed above
+          required: true
+        - label: This template is not already in the repository (or significantly improves an existing one)
+          required: true
+        - label: I agree to release this template under the MIT license
+          required: true
